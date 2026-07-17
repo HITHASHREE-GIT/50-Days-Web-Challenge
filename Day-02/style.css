@@ -1,0 +1,31 @@
+/* ========================================== */
+/* DAY 2: CSS BOX MODEL & UNIVERSAL RESET     */
+/* ========================================== */
+
+/* CSS Variables */
+:root {
+    --primary-color: #0056b3;
+    --text-color: #333333;
+    --bg-color: #ffffff;
+    --main-font: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Universal Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Body Styling */
+body {
+    font-family: var(--main-font);
+    background-color: var(--bg-color);
+    color: var(--text-color);
+}
+
+/* Bonus Challenge */
+h1 {
+    color: var(--primary-color);
+    margin-bottom: 20px;
+}
