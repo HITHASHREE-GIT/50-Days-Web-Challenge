@@ -1,62 +1,31 @@
-# Day 01 - Semantic HTML Architecture
+# 🚀 Day 01 - Semantic HTML Structure
 
-## 📌 Objective
+## Overview
 
-Build the semantic HTML structure for a Community Platform landing page without using CSS or JavaScript.
+Today I built the semantic HTML structure for **TechNova Community**.
 
----
-
-## 🛠️ Technologies Used
-
-- HTML5
-
----
-
-## 📚 Concepts Learned
+## Concepts Learned
 
 - Semantic HTML
-- HTML Document Structure
 - Header
 - Navigation
-- Main
-- Section
-- Article
-- Footer
-- Accessibility (ARIA Roles)
-- SEO Basics
-
----
-
-## ✨ Features
-
-- Semantic HTML5 structure
-- Navigation Menu
 - Hero Section
 - About Section
-- Initiatives Section
-- Core Team Section
-- Footer with social links
-- Accessibility-friendly structure
+- Article
+- Footer
 
----
+## Folder Structure
 
-## 📂 Folder Structure
-
-```
-Day-01
+Day-01/
 │
 ├── index.html
-└── README.md
-```
+├── README.md
+└── screenshots/
 
----
+## Screenshot
 
-## 📖 What I Learned
+Add screenshots inside the screenshots folder.
 
-Today I learned how to build the foundation of a webpage using semantic HTML elements instead of generic `<div>` tags. I also understood the importance of accessibility, SEO, and maintaining a proper document hierarchy.
+## Author
 
----
-
-## 🚀 Outcome
-
-Successfully created the semantic architecture for a community landing page using HTML5.
+Hithashree P
