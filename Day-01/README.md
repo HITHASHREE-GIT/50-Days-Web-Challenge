@@ -4,7 +4,7 @@
 
 Today I built the semantic HTML structure for **TechNova Community**.
 
-## Concepts Learned
+## Concepts   Learned
 
 - Semantic HTML
 - Header
