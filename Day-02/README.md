@@ -40,4 +40,4 @@ Successfully connected a stylesheet to the HTML page and created a clean, consis
 
 ### Browser Output
 
-![Browser Output](screenshots/day2-output.png)
+![Browser Output](screenshots/day2-output.png)___+++
