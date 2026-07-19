@@ -1,0 +1,396 @@
+/* ==========================================
+   TECHNOVA COMMUNITY - DAY 04
+   Purple Tech Theme
+========================================== */
+
+/* ---------- CSS VARIABLES ---------- */
+
+:root{
+
+    --primary-color:#7C3AED;
+    --secondary-color:#A855F7;
+    --accent-color:#C084FC;
+
+    --background:#F5F3FF;
+    --white:#FFFFFF;
+
+    --text:#1E1B4B;
+    --gray:#6B7280;
+
+    --shadow:0 12px 25px rgba(124,58,237,.18);
+
+    --radius:18px;
+
+    --transition:0.3s ease;
+
+}
+
+/* ---------- RESET ---------- */
+
+*{
+
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+
+}
+
+/* ---------- BODY ---------- */
+
+body{
+
+    font-family:'Segoe UI',Tahoma,Geneva,Verdana,sans-serif;
+
+    background:var(--background);
+
+    color:var(--text);
+
+    line-height:1.6;
+
+}
+
+/* ---------- NAVIGATION ---------- */
+
+nav{
+
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+
+    padding:20px 60px;
+
+    background:var(--white);
+
+    box-shadow:0 2px 12px rgba(124,58,237,.08);
+
+}
+
+.logo{
+
+    color:var(--primary-color);
+
+    font-size:30px;
+
+    font-weight:bold;
+
+}
+
+nav ul{
+
+    display:flex;
+
+    list-style:none;
+
+    gap:25px;
+
+}
+
+nav a{
+
+    text-decoration:none;
+
+    color:var(--text);
+
+    font-weight:600;
+
+    transition:var(--transition);
+
+}
+
+nav a:hover{
+
+    color:var(--primary-color);
+
+}
+
+/* ---------- HERO ---------- */
+
+.hero-section{
+
+    min-height:75vh;
+
+    display:flex;
+
+    flex-direction:column;
+
+    justify-content:center;
+
+    align-items:center;
+
+    text-align:center;
+
+    padding:40px;
+
+    background:linear-gradient(135deg,#F5F3FF,#E9D5FF);
+
+}
+
+.hero-section h1{
+
+    font-size:50px;
+
+    color:var(--primary-color);
+
+    margin-bottom:20px;
+
+}
+
+.hero-section p{
+
+    max-width:700px;
+
+    font-size:18px;
+
+    margin-bottom:35px;
+
+}
+
+.btn{
+
+    background:var(--primary-color);
+
+    color:white;
+
+    text-decoration:none;
+
+    padding:15px 35px;
+
+    border-radius:50px;
+
+    transition:var(--transition);
+
+    font-weight:bold;
+
+}
+
+.btn:hover{
+
+    background:#6D28D9;
+
+    transform:translateY(-3px);
+
+}
+
+/* ---------- ABOUT ---------- */
+
+.about-section{
+
+    padding:70px 40px;
+
+    text-align:center;
+
+}
+
+.about-section h2{
+
+    color:var(--primary-color);
+
+    margin-bottom:20px;
+
+}
+
+.about-section p{
+
+    max-width:800px;
+
+    margin:auto;
+
+    color:var(--gray);
+
+}
+
+/* ---------- TEAM ---------- */
+
+.team-section{
+
+    padding:80px 40px;
+
+    text-align:center;
+
+}
+
+.team-section h2{
+
+    font-size:38px;
+
+    color:var(--primary-color);
+
+    margin-bottom:15px;
+
+}
+
+.team-description{
+
+    max-width:700px;
+
+    margin:auto;
+
+    margin-bottom:50px;
+
+    color:var(--gray);
+
+}
+
+/* ---------- GRID ---------- */
+
+.team-grid{
+
+    display:flex;
+
+    justify-content:center;
+
+    gap:30px;
+
+    flex-wrap:wrap;
+
+}
+
+/* ---------- CARD ---------- */
+
+.profile-card{
+
+    background:var(--white);
+
+    width:300px;
+
+    border-radius:20px;
+
+    padding:30px;
+
+    text-align:center;
+
+    box-shadow:var(--shadow);
+
+    overflow:hidden;
+
+    transition:var(--transition);
+
+}
+
+.profile-card:hover{
+
+    transform:translateY(-10px);
+
+    box-shadow:0 20px 35px rgba(124,58,237,.30);
+
+}
+
+/* ---------- IMAGE ---------- */
+
+.profile-card img{
+
+    width:130px;
+
+    height:130px;
+
+    border-radius:50%;
+
+    border:5px solid var(--primary-color);
+
+    object-fit:cover;
+
+    margin-bottom:20px;
+
+}
+
+/* ---------- NAME ---------- */
+
+.profile-card h3{
+
+    font-size:24px;
+
+    margin-bottom:10px;
+
+}
+
+/* ---------- ROLE ---------- */
+
+.role{
+
+    color:var(--secondary-color);
+
+    font-weight:bold;
+
+    margin-bottom:15px;
+
+}
+
+/* ---------- BIO ---------- */
+
+.bio{
+
+    color:var(--gray);
+
+    margin-bottom:25px;
+
+}
+
+/* ---------- BUTTON ---------- */
+
+.profile-btn{
+
+    display:inline-block;
+
+    padding:12px 30px;
+
+    background:var(--primary-color);
+
+    color:white;
+
+    text-decoration:none;
+
+    border-radius:40px;
+
+    transition:var(--transition);
+
+}
+
+.profile-btn:hover{
+
+    background:#6D28D9;
+
+}
+
+/* ---------- FOOTER ---------- */
+
+footer{
+
+    margin-top:60px;
+
+    padding:25px;
+
+    background:#312E81;
+
+    color:white;
+
+    text-align:center;
+
+}
+
+/* ---------- RESPONSIVE ---------- */
+
+@media(max-width:768px){
+
+    nav{
+
+        flex-direction:column;
+
+        gap:20px;
+
+    }
+
+    nav ul{
+
+        flex-direction:column;
+
+        align-items:center;
+
+    }
+
+    .hero-section h1{
+
+        font-size:36px;
+
+    }
+
+}
