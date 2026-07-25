@@ -1,0 +1,593 @@
+/* ========================================== */
+/* DAY 9: ACCESSIBILITY (A11Y) STANDARDS      */
+/* ========================================== */
+
+/* 1. CSS VARIABLES */
+:root {
+    --primary-color: #2d1b69;
+    --primary-light: #4a2d8a;
+    --primary-accent: #c084fc;
+    --text-color: #1a1a2e;
+    --text-light: #4a4a6a;
+    --bg-color: #f8f5ff;
+    --white: #ffffff;
+    --shadow: rgba(45, 27, 105, 0.12);
+    --main-font: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    --success-color: #22c55e;
+    --error-color: #ef4444;
+    --gray-color: #6b7280;
+}
+
+/* 2. UNIVERSAL RESET */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* 3. BASE BODY STYLES */
+body {
+    font-family: var(--main-font);
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    line-height: 1.6;
+}
+
+/* ========================================== */
+/* 1. THE SKIP-TO-CONTENT LINK               */
+/* ========================================== */
+
+.skip-link {
+    position: absolute;
+    top: -100px;
+    left: 10px;
+    background-color: var(--primary-color);
+    color: var(--white);
+    padding: 12px 20px;
+    z-index: 10000;
+    text-decoration: none;
+    font-weight: 700;
+    border-radius: 0 0 8px 8px;
+    transition: top 0.3s ease;
+}
+
+/* When a keyboard user hits "Tab" and focuses it, drop it into view! */
+.skip-link:focus {
+    top: 0;
+}
+
+/* ========================================== */
+/* 2. KEYBOARD FOCUS VISIBILITY              */
+/* ========================================== */
+
+/* This targets elements focused specifically by a keyboard (not a mouse click) */
+:focus-visible {
+    outline: 3px solid var(--primary-color);
+    outline-offset: 3px;
+    border-radius: 4px;
+}
+
+/* ========================================== */
+/* NAVIGATION WITH ACCESSIBILITY              */
+/* ========================================== */
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.2rem 3rem;
+    background: var(--white);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.logo-container {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.logo {
+    font-size: 1.5rem;
+}
+
+.logo-text {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: var(--primary-color);
+}
+
+nav ul {
+    display: flex;
+    gap: 2rem;
+    list-style: none;
+}
+
+nav a {
+    text-decoration: none;
+    color: var(--text-color);
+    font-weight: 600;
+    transition: color 0.3s ease, transform 0.2s ease;
+    padding: 0.5rem 0.2rem;
+    position: relative;
+}
+
+nav a::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: var(--primary-color);
+    transition: width 0.3s ease;
+}
+
+nav a:hover {
+    color: var(--primary-color);
+    transform: translateY(-1px);
+}
+
+nav a:hover::after {
+    width: 100%;
+}
+
+nav a:focus-visible {
+    outline-offset: 5px;
+}
+
+.hamburger {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    cursor: pointer;
+    padding: 5px;
+}
+
+.hamburger span {
+    width: 25px;
+    height: 3px;
+    background: var(--primary-color);
+    border-radius: 3px;
+    transition: all 0.3s ease;
+}
+
+.hamburger.active span:nth-child(1) {
+    transform: rotate(45deg) translate(5px, 5px);
+}
+
+.hamburger.active span:nth-child(2) {
+    opacity: 0;
+}
+
+.hamburger.active span:nth-child(3) {
+    transform: rotate(-45deg) translate(5px, -5px);
+}
+
+/* ========================================== */
+/* HERO SECTION                              */
+/* ========================================== */
+
+.hero-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 70vh;
+    background: linear-gradient(135deg, var(--bg-color) 0%, #e8e0f5 100%);
+    text-align: center;
+    padding: 2rem;
+}
+
+.hero-section h1 {
+    font-size: clamp(2rem, 8vw, 4.5rem);
+    margin-bottom: 1rem;
+    background: linear-gradient(135deg, var(--primary-color), #7b2ff7);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.hero-section p {
+    font-size: clamp(1rem, 2vw, 1.4rem);
+    color: var(--text-light);
+    max-width: 600px;
+    margin-bottom: 1.5rem;
+}
+
+/* ========================================== */
+/* BUTTON STYLES                             */
+/* ========================================== */
+
+.cta-button {
+    display: inline-block;
+    padding: 0.8rem 2.5rem;
+    background: var(--primary-color);
+    color: var(--white);
+    text-decoration: none;
+    border-radius: 50px;
+    font-weight: bold;
+    transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+}
+
+.cta-button:hover {
+    background: var(--primary-light);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(45, 27, 105, 0.3);
+}
+
+/* ========================================== */
+/* FORM STYLES                               */
+/* ========================================== */
+
+.join-community {
+    background: var(--white);
+    padding: 2.5rem;
+}
+
+.join-community h2 {
+    text-align: center;
+    margin-bottom: 0.5rem;
+    color: var(--primary-color);
+    border-bottom: 2px solid var(--primary-accent);
+    padding-bottom: 0.5rem;
+}
+
+.join-community > p {
+    text-align: center;
+    color: var(--text-light);
+    margin-bottom: 2rem;
+    font-size: 1.1rem;
+}
+
+.membership-form {
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+.form-group label {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    color: var(--text-color);
+}
+
+.required {
+    color: var(--error-color);
+    font-weight: 700;
+}
+
+.form-group input,
+.form-group textarea,
+.form-group select {
+    width: 100%;
+    padding: 12px 15px;
+    border: 2px solid #d1d5db;
+    border-radius: 8px;
+    font-family: var(--main-font);
+    font-size: 1rem;
+    background: var(--white);
+    color: var(--text-color);
+    transition: border-color 0.3s ease, box-shadow 0.3s ease, transform 0.2s ease;
+}
+
+.form-group input:focus,
+.form-group textarea:focus,
+.form-group select:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 4px rgba(45, 27, 105, 0.1);
+    transform: scale(1.01);
+}
+
+/* Make focus-visible more prominent for keyboard users */
+.form-group input:focus-visible,
+.form-group textarea:focus-visible,
+.form-group select:focus-visible {
+    outline: 3px solid var(--primary-color);
+    outline-offset: 2px;
+}
+
+.form-group textarea {
+    resize: vertical;
+    min-height: 100px;
+}
+
+.form-group select {
+    appearance: none;
+    cursor: pointer;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%236b7280' d='M6 8L1 3h10z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 15px center;
+    padding-right: 40px;
+}
+
+/* VALID/INVALID STATES */
+.form-group input:valid,
+.form-group textarea:valid {
+    border-color: var(--success-color);
+}
+
+.form-group input:invalid:not(:placeholder-shown),
+.form-group textarea:invalid:not(:placeholder-shown) {
+    border-color: var(--error-color);
+}
+
+/* ========================================== */
+/* SUBMIT BUTTON                             */
+/* ========================================== */
+
+.btn-submit {
+    display: block;
+    width: 100%;
+    padding: 14px 30px;
+    background: var(--primary-color);
+    color: var(--white);
+    border: none;
+    border-radius: 50px;
+    font-family: var(--main-font);
+    font-size: 1.1rem;
+    font-weight: 700;
+    cursor: pointer;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+}
+
+.btn-submit:hover {
+    background: var(--primary-light);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(45, 27, 105, 0.3);
+}
+
+.btn-submit:focus-visible {
+    outline: 3px solid var(--primary-color);
+    outline-offset: 3px;
+}
+
+.btn-submit:active {
+    transform: scale(0.98);
+}
+
+.btn-submit:disabled {
+    background: var(--gray-color);
+    cursor: not-allowed;
+    opacity: 0.6;
+    transform: none;
+}
+
+.form-note {
+    text-align: center;
+    margin-top: 1rem;
+    color: var(--text-light);
+    font-size: 0.9rem;
+}
+
+/* ========================================== */
+/* CSS GRID                                  */
+/* ========================================== */
+
+.initiatives-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+    padding: 20px 0;
+}
+
+.initiative-card {
+    background-color: var(--bg-color);
+    border-left: 4px solid var(--primary-color);
+    padding: 25px 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.initiative-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 20px rgba(45, 27, 105, 0.12);
+}
+
+.initiative-card h3 {
+    margin-bottom: 10px;
+    color: var(--text-color);
+    font-size: 1.4rem;
+}
+
+.initiative-card p {
+    color: #555;
+    line-height: 1.5;
+    margin-bottom: 10px;
+}
+
+.initiative-card time {
+    display: block;
+    color: var(--primary-color);
+    font-weight: 600;
+    font-size: 0.9rem;
+}
+
+.badge {
+    display: inline-block;
+    background: var(--primary-accent);
+    color: var(--primary-color);
+    padding: 4px 12px;
+    border-radius: 12px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+}
+
+.featured {
+    grid-column: span 2;
+    background: linear-gradient(135deg, var(--bg-color) 0%, #e8e0f5 100%);
+    border-left: 4px solid #7b2ff7;
+}
+
+.featured .badge {
+    background: #7b2ff7;
+    color: var(--white);
+}
+
+/* ========================================== */
+/* PROFILE CARDS                             */
+/* ========================================== */
+
+.team-grid {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    padding: 20px 0;
+    flex-wrap: wrap;
+}
+
+.profile-card {
+    background-color: var(--white);
+    text-align: center;
+    max-width: 260px;
+    width: 100%;
+    padding: 25px 20px 30px;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px var(--shadow);
+    transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.3s ease;
+}
+
+.profile-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 12px 40px rgba(45, 27, 105, 0.2);
+}
+
+.profile-card img {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 15px;
+    border: 3px solid var(--primary-accent);
+    transition: border-color 0.3s ease, transform 0.3s ease;
+}
+
+.profile-card:hover img {
+    border-color: var(--primary-color);
+    transform: scale(1.05);
+}
+
+.profile-card h3 {
+    font-size: 1.2rem;
+    color: var(--text-color);
+    margin-bottom: 5px;
+    font-weight: 700;
+    transition: color 0.3s ease;
+}
+
+.profile-card:hover h3 {
+    color: var(--primary-color);
+}
+
+.profile-card p {
+    font-size: 0.9rem;
+    color: #555;
+    margin-bottom: 15px;
+}
+
+.profile-link {
+    display: inline-block;
+    padding: 8px 20px;
+    background: var(--primary-color);
+    color: var(--white);
+    text-decoration: none;
+    border-radius: 25px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+}
+
+.profile-link:hover {
+    background: var(--primary-light);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(45, 27, 105, 0.3);
+}
+
+.profile-link:focus-visible {
+    outline: 3px solid var(--primary-color);
+    outline-offset: 3px;
+}
+
+/* ========================================== */
+/* FOOTER                                    */
+/* ========================================== */
+
+footer {
+    background: var(--primary-color);
+    color: var(--white);
+    text-align: center;
+    padding: 1.5rem;
+    margin-top: 2rem;
+}
+
+/* ========================================== */
+/* RESPONSIVE                                */
+/* ========================================== */
+
+@media (max-width: 900px) {
+    .initiatives-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .featured {
+        grid-column: span 2;
+    }
+}
+
+@media (max-width: 600px) {
+    nav {
+        padding: 15px 20px;
+        flex-wrap: wrap;
+    }
+    
+    .hamburger {
+        display: flex;
+    }
+    
+    nav ul {
+        display: none;
+        width: 100%;
+        flex-direction: column;
+        gap: 10px;
+        padding: 10px 0;
+        text-align: center;
+    }
+    
+    nav ul.show {
+        display: flex;
+    }
+    
+    .initiatives-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+    
+    .featured {
+        grid-column: span 1;
+    }
+    
+    .hero-section {
+        min-height: 50vh;
+        padding: 1.5rem;
+    }
+    
+    .join-community {
+        padding: 1.5rem;
+    }
+    
+    .profile-card {
+        max-width: 100%;
+    }
+}

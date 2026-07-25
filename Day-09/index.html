@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TechNova Community | Day 09</title>
+    
+    <!-- CSS Link -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- ===== SKIP TO CONTENT LINK (Accessibility) ===== -->
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+
+    <header role="banner">
+        <nav role="navigation" aria-label="Main Navigation">
+            <div class="logo-container">
+                <span class="logo" aria-hidden="true">🚀</span>
+                <span class="logo-text">TechNova</span>
+            </div>
+            <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#initiatives">Initiatives</a></li>
+                <li><a href="#core-team">Core Team</a></li>
+                <li><a href="#join">Join Us</a></li>
+            </ul>
+            <div class="hamburger" id="hamburger" aria-label="Toggle navigation menu" role="button" tabindex="0">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </nav>
+    </header>
+
+    <!-- ===== MAIN CONTENT WITH ID FOR SKIP LINK ===== -->
+    <main role="main" id="main-content">
+        <!-- HERO SECTION -->
+        <section id="home" class="hero-section" aria-labelledby="hero-heading">
+            <h1 id="hero-heading">Empowering the Next Generation of Engineers</h1>
+            <p>Join our community of passionate developers building the future, one line of code at a time.</p>
+            <a href="#join" class="cta-button" role="button">Join Now</a>
+        </section>
+
+        <!-- ABOUT SECTION -->
+        <section id="about" aria-labelledby="about-heading">
+            <h2 id="about-heading">About Our Community</h2>
+            <p>TechNova is a global community of engineers, developers, and tech enthusiasts dedicated to advancing the standards of web development.</p>
+            <p><strong>"Standard, not a trend. The logic, not a language."</strong></p>
+        </section>
+
+        <!-- INITIATIVES SECTION -->
+        <section id="initiatives" aria-labelledby="initiatives-heading">
+            <h2 id="initiatives-heading">Our Initiatives</h2>
+            
+            <div class="initiatives-grid">
+                <div class="initiative-card featured">
+                    <h3>🌟 50 Days of Web Development Challenge</h3>
+                    <p>A comprehensive 50-day journey through full-stack development.</p>
+                    <span class="badge" aria-label="Featured">Featured</span>
+                    <time datetime="2026-07-15">📅 Starts: July 15, 2026</time>
+                </div>
+
+                <div class="initiative-card">
+                    <h3>🚀 Annual Hackathon 2026</h3>
+                    <p>A 48-hour coding marathon using pure web standards.</p>
+                    <time datetime="2026-11-15">📅 Coming: November 15, 2026</time>
+                </div>
+
+                <div class="initiative-card">
+                    <h3>💻 Open Source Contributions</h3>
+                    <p>Monthly open-source contribution drives.</p>
+                    <time datetime="2026-08-01">📅 Next: August 1, 2026</time>
+                </div>
+
+                <div class="initiative-card">
+                    <h3>📚 Tech Talk Tuesdays</h3>
+                    <p>Weekly technical presentations for all skill levels.</p>
+                    <time datetime="2026-07-28">📅 Every Tuesday at 7 PM</time>
+                </div>
+
+                <div class="initiative-card">
+                    <h3>🏆 Code Review Sessions</h3>
+                    <p>Peer-to-peer code review sessions.</p>
+                    <time datetime="2026-08-05">📅 Starts: August 5, 2026</time>
+                </div>
+
+                <div class="initiative-card">
+                    <h3>🌐 Community Website</h3>
+                    <p>Building our platform using pure web standards.</p>
+                    <time datetime="2026-07-15">📅 Ongoing</time>
+                </div>
+            </div>
+        </section>
+
+        <!-- JOIN COMMUNITY SECTION -->
+        <section id="join" class="join-community" aria-labelledby="join-heading">
+            <h2 id="join-heading">Join The Engineering Community</h2>
+            <p><strong>"Standard, not a trend. Build with us."</strong></p>
+
+            <form class="membership-form" action="#" method="POST">
+                
+                <div class="form-group">
+                    <label for="fullName">Full Name <span class="required" aria-label="required">*</span></label>
+                    <input type="text" id="fullName" name="fullName" placeholder="Jane Doe" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="emailAddress">Student Email <span class="required" aria-label="required">*</span></label>
+                    <input type="email" id="emailAddress" name="emailAddress" placeholder="jane@student.edu" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="motivation">Why do you want to join?</label>
+                    <textarea id="motivation" name="motivation" rows="4" placeholder="I want to solve actual problems..."></textarea>
+                </div>
+
+                <button type="submit" class="btn-submit">Submit Application</button>
+                
+                <p class="form-note">* All fields are required</p>
+            </form>
+        </section>
+
+        <!-- CORE TEAM SECTION -->
+        <section id="core-team" aria-labelledby="team-heading">
+            <h2 id="team-heading">Core Team</h2>
+            
+            <div class="team-grid">
+                <div class="profile-card">
+                    <img src="https://via.placeholder.com/150" alt="Sarah Johnson - Lead Developer" width="150" height="150">
+                    <h3>Sarah Johnson</h3>
+                    <p>Lead Developer</p>
+                    <a href="#" class="profile-link" aria-label="View Sarah Johnson's profile">View Profile →</a>
+                </div>
+
+                <div class="profile-card">
+                    <img src="https://via.placeholder.com/150" alt="Michael Chen - DevOps Engineer" width="150" height="150">
+                    <h3>Michael Chen</h3>
+                    <p>DevOps Engineer</p>
+                    <a href="#" class="profile-link" aria-label="View Michael Chen's profile">View Profile →</a>
+                </div>
+
+                <div class="profile-card">
+                    <img src="https://via.placeholder.com/150" alt="Priya Patel - UX Researcher" width="150" height="150">
+                    <h3>Priya Patel</h3>
+                    <p>UX Researcher</p>
+                    <a href="#" class="profile-link" aria-label="View Priya Patel's profile">View Profile →</a>
+                </div>
+
+                <div class="profile-card">
+                    <img src="https://via.placeholder.com/150" alt="David Kim - Community Manager" width="150" height="150">
+                    <h3>David Kim</h3>
+                    <p>Community Manager</p>
+                    <a href="#" class="profile-link" aria-label="View David Kim's profile">View Profile →</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer role="contentinfo">
+        <p>&copy; 2026 TechNova Community. All rights reserved.</p>
+    </footer>
+</body>
+</html>
