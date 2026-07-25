@@ -20,11 +20,15 @@ Today I made the entire TechNova platform fully responsive using CSS Media Queri
 
 !\[Day 06 Code](screenshots/day6-code.png)
 
+\*Figure 1: HTML structure with responsive meta tag and CSS link\*
+
 
 
 \### 🌐 Browser Output
 
 !\[Day 06 Output](screenshots/day6-output.png)
+
+\*Figure 2: Fully responsive TechNova community page\*
 
 
 
@@ -34,7 +38,7 @@ Today I made the entire TechNova platform fully responsive using CSS Media Queri
 
 \### 1. Responsive Design
 
-Designing layouts that adapt to different screen sizes
+Designing layouts that adapt to different screen sizes:
 
 \- Desktop: 3 columns
 
@@ -48,17 +52,29 @@ Designing layouts that adapt to different screen sizes
 
 ```css
 
+/\* Tablet Breakpoint \*/
+
 @media (max-width: 900px) {
 
-&#x20;   /\* Tablet styles \*/
+&#x20;   .initiatives-grid {
+
+&#x20;       grid-template-columns: repeat(2, 1fr);
+
+&#x20;   }
 
 }
 
 
 
+/\* Mobile Breakpoint \*/
+
 @media (max-width: 600px) {
 
-&#x20;   /\* Mobile styles \*/
+&#x20;   .initiatives-grid {
+
+&#x20;       grid-template-columns: 1fr;
+
+&#x20;   }
 
 }
 
