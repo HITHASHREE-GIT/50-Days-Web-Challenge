@@ -1,8 +1,6 @@
-# 🚀 50 Days of Web Development Challenge
+# 🚀 My 50-Day Web Development Journey
 
-## 👨‍💻 About Me
-Hi! I'm [Your Name], a [Your Role/Student] passionate about web development.
-This is my journey through the Synexus 50-Day Challenge.
+Hello, I'm HITHASHREE-GIT! This is my challenge repository.
 
 ## 📊 Daily Progress
 | Day | Topic | Status | Link |
