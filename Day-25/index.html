@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TechNova Community | Day 25</title>
+    
+    <!-- CSS Link -->
+    <link rel="stylesheet" href="style.css">
+    
+    <!-- ===== MASTER ENGINE (Phase 2 Capstone) ===== -->
+    <script src="app.js" defer></script>
+</head>
+<body>
+    <!-- ===== SKIP TO CONTENT LINK ===== -->
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+
+    <!-- ===== HEADER & NAVIGATION ===== -->
+    <header role="banner">
+        <nav role="navigation" aria-label="Main Navigation">
+            <div class="logo-container">
+                <span class="logo" aria-hidden="true">🚀</span>
+                <span class="logo-text">TechNova</span>
+            </div>
+            
+            <button id="theme-toggle" class="theme-toggle" aria-label="Toggle dark mode">
+                🌙
+            </button>
+            
+            <button class="menu-toggle" aria-label="Toggle navigation menu" aria-expanded="false">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </button>
+            
+            <!-- ===== SPA NAV LINKS ===== -->
+            <ul class="nav-links">
+                <li><a href="/" class="nav-link" data-route="home">Home</a></li>
+                <li><a href="/about" class="nav-link" data-route="about">About</a></li>
+                <li><a href="/initiatives" class="nav-link" data-route="initiatives">Initiatives</a></li>
+                <li><a href="/team" class="nav-link" data-route="team">Core Team</a></li>
+                <li><a href="/kanban" class="nav-link" data-route="kanban">Kanban</a></li>
+                <li><a href="/join" class="nav-link" data-route="join">Join Us</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- ===== MAIN CONTENT - EMPTY SHELL FOR SPA ===== -->
+    <main role="main" id="app-root">
+        <!-- Content will be injected by the router engine -->
+    </main>
+
+    <!-- ===== FOOTER ===== -->
+    <footer role="contentinfo">
+        <p>&copy; 2026 TechNova Community. All rights reserved.</p>
+        <p>Built with ❤️ by the TechNova Core Team</p>
+    </footer>
+
+    <!-- ===== MODAL ===== -->
+    <div id="project-modal" class="modal-overlay" style="display: none;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="modal-title">Project Title</h3>
+                <button id="close-modal" class="close-btn" aria-label="Close modal">&times;</button>
+            </div>
+            <div class="modal-body" id="modal-body">
+                <p id="modal-description">More details about this specific initiative will load here dynamically.</p>
+                <span id="modal-status" class="badge"></span>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>
