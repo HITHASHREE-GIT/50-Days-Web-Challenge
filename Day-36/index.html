@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TechNova Community | Day 36</title>
+    
+    <!-- CSS Link -->
+    <link rel="stylesheet" href="style.css">
+    
+    <!-- ===== ES6 MODULE - Main Entry Point ===== -->
+    <script type="module" src="main.js"></script>
+</head>
+<body>
+    <!-- ===== SKIP TO CONTENT LINK ===== -->
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+
+    <!-- ===== HEADER & NAVIGATION ===== -->
+    <header role="banner">
+        <nav role="navigation" aria-label="Main Navigation">
+            <div class="logo-container">
+                <span class="logo" aria-hidden="true">🚀</span>
+                <span class="logo-text">TechNova</span>
+            </div>
+            
+            <button id="theme-toggle" class="theme-toggle" aria-label="Toggle dark mode">
+                🌙
+            </button>
+            
+            <button class="menu-toggle" aria-label="Toggle navigation menu" aria-expanded="false">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </button>
+            
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#initiatives">Initiatives</a></li>
+                <li><a href="#api">GitHub Lookup</a></li>
+                <li><a href="#team">Core Team</a></li>
+                <li><a href="#join">Join Us</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- ===== MAIN CONTENT ===== -->
+    <main role="main" id="main-content">
+
+        <!-- ===== HERO SECTION ===== -->
+        <section id="home" class="hero-section" aria-labelledby="hero-heading">
+            <h1 id="hero-heading">Empowering the Next Generation of Engineers</h1>
+            <p>Join our community of passionate developers building the future, one line of code at a time.</p>
+            <button id="heroButton" class="cta-button" role="button">Join Now</button>
+        </section>
+
+        <!-- ===== ABOUT SECTION ===== -->
+        <section id="about" aria-labelledby="about-heading">
+            <h2 id="about-heading">About Our Community</h2>
+            <p>TechNova is a global community of engineers, developers, and tech enthusiasts dedicated to advancing the standards of web development.</p>
+            <p><strong>"Standard, not a trend. The logic, not a language."</strong></p>
+        </section>
+
+        <!-- ===== INITIATIVES SECTION ===== -->
+        <section id="initiatives" aria-labelledby="initiatives-heading">
+            <h2 id="initiatives-heading">Our Initiatives</h2>
+            
+            <div class="initiatives-grid" id="initiatives-grid">
+                <div class="initiative-card status-active">
+                    <h3>🌟 50 Days of Web Development Challenge</h3>
+                    <p>A comprehensive 50-day journey through full-stack development.</p>
+                    <span class="badge active">Active</span>
+                </div>
+                <div class="initiative-card status-active">
+                    <h3>🚀 Annual Hackathon 2026</h3>
+                    <p>A 48-hour coding marathon using pure web standards.</p>
+                    <span class="badge active">Active</span>
+                </div>
+                <div class="initiative-card status-completed">
+                    <h3>💻 Open Source Contributions</h3>
+                    <p>Monthly open-source contribution drives.</p>
+                    <span class="badge completed">Completed</span>
+                </div>
+                <div class="initiative-card status-planning">
+                    <h3>📚 Tech Talk Tuesdays</h3>
+                    <p>Weekly technical presentations for all skill levels.</p>
+                    <span class="badge planning">Planning</span>
+                </div>
+                <div class="initiative-card status-planning">
+                    <h3>🏆 Code Review Sessions</h3>
+                    <p>Peer-to-peer code review sessions.</p>
+                    <span class="badge planning">Planning</span>
+                </div>
+                <div class="initiative-card status-active">
+                    <h3>🌐 Community Website</h3>
+                    <p>Building our platform using pure web standards.</p>
+                    <span class="badge active">Active</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== GITHUB API LOOKUP SECTION (with Deep Linking) ===== -->
+        <section id="api" class="api-section" aria-labelledby="api-heading">
+            <h2 id="api-heading">🌐 GitHub Contributor Lookup</h2>
+            <p style="color: var(--text-muted); margin-bottom: 1.5rem;">🔗 URL updates automatically - Share the link!</p>
+            
+            <div class="api-search-container">
+                <div class="search-input-wrapper">
+                    <span class="search-icon">🔍</span>
+                    <input type="text" id="github-username" placeholder="Type a GitHub username..." aria-label="GitHub username" autofocus>
+                    <span id="search-status" class="search-status">Ready</span>
+                </div>
+            </div>
+            
+            <div id="url-display" class="url-display">🔗 Current URL: <span id="current-url"></span></div>
+            
+            <div id="dev-profile-card" class="dev-profile-card">
+                <div class="placeholder-state">
+                    <span class="placeholder-icon">👤</span>
+                    <p>Start typing to search for a GitHub user</p>
+                </div>
+            </div>
+
+            <h3 style="margin-top: 2rem; color: var(--primary-color);">📦 Recent Repositories</h3>
+            <div id="repos-grid" class="initiatives-grid">
+                <div class="placeholder-state" style="grid-column: 1 / -1; text-align: center; padding: 2rem; color: var(--text-muted);">
+                    <span class="placeholder-icon">📂</span>
+                    <p>Search for a user to see their repositories</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== CORE TEAM CARDS ===== -->
+        <section id="team" aria-labelledby="team-heading">
+            <h2 id="team-heading">Community Leadership</h2>
+            
+            <div class="team-grid">
+                <div class="profile-card">
+                    <img src="https://via.placeholder.com/150" alt="Sarah Johnson - Lead Developer" width="150" height="150">
+                    <h3>Sarah Johnson</h3>
+                    <p>Lead Developer</p>
+                    <a href="#" class="profile-link" aria-label="View Sarah Johnson's profile">View Profile →</a>
+                </div>
+
+                <div class="profile-card">
+                    <img src="https://via.placeholder.com/150" alt="Michael Chen - DevOps Engineer" width="150" height="150">
+                    <h3>Michael Chen</h3>
+                    <p>DevOps Engineer</p>
+                    <a href="#" class="profile-link" aria-label="View Michael Chen's profile">View Profile →</a>
+                </div>
+
+                <div class="profile-card">
+                    <img src="https://via.placeholder.com/150" alt="Priya Patel - UX Researcher" width="150" height="150">
+                    <h3>Priya Patel</h3>
+                    <p>UX Researcher</p>
+                    <a href="#" class="profile-link" aria-label="View Priya Patel's profile">View Profile →</a>
+                </div>
+
+                <div class="profile-card">
+                    <img src="https://via.placeholder.com/150" alt="David Kim - Community Manager" width="150" height="150">
+                    <h3>David Kim</h3>
+                    <p>Community Manager</p>
+                    <a href="#" class="profile-link" aria-label="View David Kim's profile">View Profile →</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== JOIN FORM ===== -->
+        <section id="join" class="join-community" aria-labelledby="join-heading">
+            <h2 id="join-heading">Join The Engineering Community</h2>
+            <p><strong>"Standard, not a trend. Build with us."</strong></p>
+
+            <div id="draft-indicator" class="draft-indicator">💾 Draft saved</div>
+
+            <form class="membership-form" id="membershipForm" action="#" method="POST">
+                
+                <div class="form-group">
+                    <label for="fullName">Full Name <span class="required" aria-label="required">*</span></label>
+                    <input type="text" id="fullName" name="fullName" placeholder="Jane Doe" required>
+                    <div class="error-message" id="nameError"></div>
+                </div>
+
+                <div class="form-group">
+                    <label for="emailAddress">Student Email <span class="required" aria-label="required">*</span></label>
+                    <input type="email" id="emailAddress" name="emailAddress" placeholder="jane@student.edu" required>
+                    <div class="error-message" id="emailError"></div>
+                </div>
+
+                <div class="form-group">
+                    <label for="motivation">Why do you want to join?</label>
+                    <textarea id="motivation" name="motivation" rows="4" placeholder="I want to solve actual problems..."></textarea>
+                </div>
+
+                <button type="submit" class="btn-submit">Submit Application</button>
+                
+                <p class="form-note">* All fields are required</p>
+            </form>
+        </section>
+
+    </main>
+
+    <!-- ===== FOOTER ===== -->
+    <footer role="contentinfo">
+        <p>&copy; 2026 TechNova Community. All rights reserved.</p>
+        <p>Built with ❤️ by the TechNova Core Team</p>
+    </footer>
+
+</body>
+</html>
