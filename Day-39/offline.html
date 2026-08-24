@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Offline | TechNova</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            background: #f8f5ff;
+            color: #1a1a2e;
+        }
+        .offline-container {
+            text-align: center;
+            padding: 2rem;
+            max-width: 500px;
+        }
+        .offline-icon {
+            font-size: 4rem;
+        }
+        h1 {
+            color: #2d1b69;
+        }
+        p {
+            color: #4a4a6a;
+        }
+        .btn {
+            display: inline-block;
+            padding: 0.8rem 2rem;
+            background: #2d1b69;
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        .btn:hover {
+            background: #4a2d8a;
+            transform: translateY(-2px);
+        }
+        .dark-theme {
+            background: #121212;
+            color: #e8e8e8;
+        }
+        .dark-theme h1 {
+            color: #7b5ea7;
+        }
+        .dark-theme p {
+            color: #b0b0b8;
+        }
+        .dark-theme .btn {
+            background: #7b5ea7;
+        }
+        .dark-theme .btn:hover {
+            background: #9b7ec7;
+        }
+    </style>
+</head>
+<body>
+    <div class="offline-container">
+        <div class="offline-icon">📡</div>
+        <h1>You're Offline</h1>
+        <p>Looks like you've lost your internet connection.</p>
+        <p style="font-size: 0.9rem; color: var(--text-muted);">Don't worry! The TechNova platform is cached and ready for you.</p>
+        <br>
+        <a href="/" class="btn">🏠 Go Home</a>
+        <br><br>
+        <p style="font-size: 0.8rem; color: var(--text-muted);">Try refreshing when you're back online.</p>
+    </div>
+</body>
+</html>
