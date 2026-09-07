@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TechNova | Component Composition</title>
+    
+    <!-- CSS Link -->
+    <link rel="stylesheet" href="style.css">
+    
+    <!-- ===== IMPORT WEB COMPONENTS ===== -->
+    <script type="module" src="components/CustomModal.js"></script>
+    <script type="module" src="components/CustomCard.js"></script>
+    <script type="module" src="main.js"></script>
+</head>
+<body>
+    <!-- ===== SKIP TO CONTENT LINK ===== -->
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+
+    <!-- ===== TEMPLATES (Inert HTML) ===== -->
+    
+    <!-- Modal Template -->
+    <template id="modal-template">
+        <style>
+            .modal-overlay {
+                position: fixed;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                background: rgba(0, 0, 0, 0.5);
+                display: none;
+                align-items: center;
+                justify-content: center;
+                z-index: 1000;
+                animation: fadeIn 0.3s ease;
+            }
+            .modal-overlay.open {
+                display: flex;
+            }
+            .modal-content {
+                background: var(--bg-card, #ffffff);
+                border-radius: 12px;
+                max-width: 500px;
+                width: 90%;
+                max-height: 80vh;
+                overflow-y: auto;
+                box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+                animation: slideUp 0.3s ease;
+                padding: 0;
+            }
+            @keyframes fadeIn {
+                from { opacity: 0; }
+                to { opacity: 1; }
+            }
+            @keyframes slideUp {
+                from { transform: translateY(20px); opacity: 0; }
+                to { transform: translateY(0); opacity: 1; }
+            }
+            .modal-header {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                padding: 1.2rem 1.5rem;
+                border-bottom: 2px solid var(--border-color, #e5e7eb);
+            }
+            .modal-header ::slotted([slot="title"]) {
+                margin: 0;
+                font-size: 1.3rem;
+                font-weight: 700;
+                color: var(--text-color, #1a1a2e);
+            }
+            .close-btn {
+                background: none;
+                border: none;
+                font-size: 1.8rem;
+                cursor: pointer;
+                color: var(--text-muted, #6b7280);
+                transition: all 0.3s ease;
+                padding: 0 0.5rem;
+                line-height: 1;
+            }
+            .close-btn:hover {
+                color: var(--error-color, #ef4444);
+                transform: rotate(90deg);
+            }
+            .modal-body {
+                padding: 1.5rem;
+                color: var(--text-color, #1a1a2e);
+            }
+            .modal-body ::slotted(*) {
+                margin-bottom: 0.5rem;
+            }
+            .modal-body ::slotted(p) {
+                color: var(--text-light, #4a4a6a);
+                line-height: 1.6;
+            }
+            .modal-body ::slotted(button) {
+                margin-top: 0.5rem;
+                padding: 8px 20px;
+                background: var(--primary-color, #2d1b69);
+                color: white;
+                border: none;
+                border-radius: 8px;
+                cursor: pointer;
+                font-weight: 600;
+                transition: all 0.3s ease;
+            }
+            .modal-body ::slotted(button:hover) {
+                background: var(--primary-light, #4a2d8a);
+                transform: translateY(-2px);
+            }
+            .modal-footer {
+                padding: 1rem 1.5rem;
+                border-top: 1px solid var(--border-color, #e5e7eb);
+                display: flex;
+                justify-content: flex-end;
+                gap: 0.5rem;
+            }
+            .dark-theme .modal-content {
+                background: #1e1e2a;
+            }
+            .dark-theme .modal-header {
+                border-color: #3a3a4a;
+            }
+            .dark-theme .modal-footer {
+                border-color: #3a3a4a;
+            }
+        </style>
+        
+        <div class="modal-overlay" id="modal-overlay">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <slot name="title">Default Title</slot>
+                    <button class="close-btn" id="modal-close-btn">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <slot>Default body content goes here.</slot>
+                </div>
+                <div class="modal-footer">
+                    <slot name="footer">
+                        <button id="modal-default-btn">Close</button>
+                    </slot>
+                </div>
+            </div>
+        </div>
+    </template>
+
+    <!-- Card Template -->
+    <template id="card-template">
+        <style>
+            .card {
+                background: var(--bg-card, #ffffff);
+                border: 2px solid var(--border-color, #e0e0e0);
+                border-radius: 12px;
+                padding: 0;
+                overflow: hidden;
+                box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+                transition: all 0.3s ease;
+                max-width: 350px;
+                margin: 0 auto;
+            }
+            .card:hover {
+                transform: translateY(-5px);
+                box-shadow: 0 12px 24px rgba(0,0,0,0.12);
+            }
+            .card-header {
+                padding: 1rem 1.2rem;
+                background: var(--primary-color, #2d1b69);
+                color: white;
+                border-bottom: 2px solid var(--primary-light, #4a2d8a);
+            }
+            .card-header ::slotted([slot="title"]) {
+                margin: 0;
+                font-size: 1.2rem;
+                font-weight: 700;
+                color: white;
+            }
+            .card-body {
+                padding: 1.2rem;
+                color: var(--text-color, #1a1a2e);
+            }
+            .card-body ::slotted(p) {
+                color: var(--text-light, #4a4a6a);
+                line-height: 1.6;
+                margin-bottom: 0.5rem;
+            }
+            .card-footer {
+                padding: 0.8rem 1.2rem;
+                border-top: 1px solid var(--border-color, #e5e7eb);
+                background: var(--bg-color, #f8f5ff);
+            }
+            .card-footer ::slotted([slot="footer"]) {
+                color: var(--primary-color, #2d1b69);
+                font-weight: 600;
+                text-decoration: none;
+            }
+            .card-footer ::slotted([slot="footer"]:hover) {
+                text-decoration: underline;
+            }
+            .dark-theme .card {
+                background: #1e1e2a;
+                border-color: #3a3a4a;
+            }
+            .dark-theme .card-header {
+                background: #4a2d8a;
+                border-color: #7b5ea7;
+            }
+            .dark-theme .card-footer {
+                background: #1a1a26;
+                border-color: #3a3a4a;
+            }
+            .dark-theme .card-footer ::slotted([slot="footer"]) {
+                color: #c084fc;
+            }
+        </style>
+        
+        <div class="card">
+            <div class="card-header">
+                <slot name="title">Card Title</slot>
+            </div>
+            <div class="card-body">
+                <slot>Card body content goes here.</slot>
+            </div>
+            <div class="card-footer">
+                <slot name="footer">🔗 Learn More</slot>
+            </div>
+        </div>
+    </template>
+
+    <!-- ===== HEADER & NAVIGATION ===== -->
+    <header role="banner">
+        <nav role="navigation" aria-label="Main Navigation">
+            <div class="logo-container">
+                <span class="logo" aria-hidden="true">🚀</span>
+                <span class="logo-text">TechNova</span>
+            </div>
+            
+            <button id="theme-toggle" class="theme-toggle" aria-label="Toggle dark mode">
+                🌙
+            </button>
+            
+            <button class="menu-toggle" aria-label="Toggle navigation menu" aria-expanded="false">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </button>
+            
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#initiatives">Initiatives</a></li>
+                <li><a href="#components">Components</a></li>
+                <li><a href="#team">Core Team</a></li>
+                <li><a href="#join">Join Us</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- ===== MAIN CONTENT ===== -->
+    <main role="main" id="main-content">
+
+        <!-- ===== HERO SECTION ===== -->
+        <section id="home" class="hero-section" aria-labelledby="hero-heading">
+            <h1 id="hero-heading">Empowering the Next Generation of Engineers</h1>
+            <p>Join our community of passionate developers building the future, one line of code at a time.</p>
+            <button id="heroButton" class="cta-button" role="button">Join Now</button>
+        </section>
+
+        <!-- ===== ABOUT SECTION ===== -->
+        <section id="about" aria-labelledby="about-heading">
+            <h2 id="about-heading">About Our Community</h2>
+            <p>TechNova is a global community of engineers, developers, and tech enthusiasts dedicated to advancing the standards of web development.</p>
+            <p><strong>"Standard, not a trend. The logic, not a language."</strong></p>
+        </section>
+
+        <!-- ===== INITIATIVES SECTION ===== -->
+        <section id="initiatives" aria-labelledby="initiatives-heading">
+            <h2 id="initiatives-heading">Our Initiatives</h2>
+            
+            <div class="initiatives-grid" id="initiatives-grid">
+                <div class="initiative-card status-active">
+                    <h3>🌟 50 Days of Web Development Challenge</h3>
+                    <p>A comprehensive 50-day journey through full-stack development.</p>
+                    <span class="badge active">Active</span>
+                </div>
+                <div class="initiative-card status-active">
+                    <h3>🚀 Annual Hackathon 2026</h3>
+                    <p>A 48-hour coding marathon using pure web standards.</p>
+                    <span class="badge active">Active</span>
+                </div>
+                <div class="initiative-card status-completed">
+                    <h3>💻 Open Source Contributions</h3>
+                    <p>Monthly open-source contribution drives.</p>
+                    <span class="badge completed">Completed</span>
+                </div>
+                <div class="initiative-card status-planning">
+                    <h3>📚 Tech Talk Tuesdays</h3>
+                    <p>Weekly technical presentations for all skill levels.</p>
+                    <span class="badge planning">Planning</span>
+                </div>
+                <div class="initiative-card status-planning">
+                    <h3>🏆 Code Review Sessions</h3>
+                    <p>Peer-to-peer code review sessions.</p>
+                    <span class="badge planning">Planning</span>
+                </div>
+                <div class="initiative-card status-active">
+                    <h3>🌐 Community Website</h3>
+                    <p>Building our platform using pure web standards.</p>
+                    <span class="badge active">Active</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== COMPONENT COMPOSITION SECTION (Day 45) ===== -->
+        <section id="components" class="components-section" aria-labelledby="components-heading">
+            <h2 id="components-heading">🧩 Component Composition</h2>
+            <p style="color: var(--text-muted); margin-bottom: 1.5rem;">
+                📦 Using &lt;template&gt; and &lt;slot&gt; for flexible, reusable components
+            </p>
+            
+            <!-- ===== MODAL COMPONENTS ===== -->
+            <div class="component-demo">
+                <h3>📋 Modal Components</h3>
+                <div class="modal-buttons">
+                    <button class="open-modal-btn" data-modal="warning">⚠️ Open Warning Modal</button>
+                    <button class="open-modal-btn" data-modal="welcome">🎉 Open Welcome Modal</button>
+                    <button class="open-modal-btn" data-modal="confirm">❓ Open Confirm Modal</button>
+                </div>
+                
+                <custom-modal id="modal-warning">
+                    <h2 slot="title">⚠️ Data Deletion Warning</h2>
+                    <p>Are you absolutely sure you want to permanently delete this record? This action cannot be undone.</p>
+                    <button id="warning-delete-btn">🗑️ Yes, Delete</button>
+                    <span slot="footer">
+                        <button class="modal-close-btn" style="background: #ef4444; color: white; padding: 8px 20px; border: none; border-radius: 8px; cursor: pointer;">Cancel</button>
+                    </span>
+                </custom-modal>
+
+                <custom-modal id="modal-welcome">
+                    <h2 slot="title">🎉 Welcome to TechNova!</h2>
+                    <p>Your account has been successfully verified. Let's get started with your journey!</p>
+                    <p><strong>Next steps:</strong></p>
+                    <ul>
+                        <li>Complete your profile</li>
+                        <li>Join a community</li>
+                        <li>Start learning</li>
+                    </ul>
+                    <span slot="footer">
+                        <button class="modal-close-btn" style="background: #22c55e; color: white; padding: 8px 20px; border: none; border-radius: 8px; cursor: pointer;">🚀 Get Started</button>
+                    </span>
+                </custom-modal>
+
+                <custom-modal id="modal-confirm">
+                    <h2 slot="title">❓ Confirmation Required</h2>
+                    <p>Are you sure you want to proceed with this action?</p>
+                    <p style="font-size: 0.9rem; color: var(--text-muted);">This will affect 5 items in your account.</p>
+                    <span slot="footer">
+                        <button class="modal-close-btn" style="background: #6b7280; color: white; padding: 8px 20px; border: none; border-radius: 8px; cursor: pointer;">Cancel</button>
+                        <button id="confirm-proceed-btn" style="background: #22c55e; color: white; padding: 8px 20px; border: none; border-radius: 8px; cursor: pointer;">✅ Proceed</button>
+                    </span>
+                </custom-modal>
+            </div>
+
+            <!-- ===== CARD COMPONENTS ===== -->
+            <div class="component-demo">
+                <h3>📇 Card Components</h3>
+                <div class="card-grid">
+                    <custom-card>
+                        <h2 slot="title">🌟 Featured Project</h2>
+                        <p>This is a featured project card with custom content. The slot system makes it easy to compose different card variations.</p>
+                        <span slot="footer">🔗 View Project →</span>
+                    </custom-card>
+
+                    <custom-card>
+                        <h2 slot="title">📚 Learning Resource</h2>
+                        <p>Check out our curated learning resources for web development, from beginner to advanced topics.</p>
+                        <span slot="footer">📖 Start Learning →</span>
+                    </custom-card>
+
+                    <custom-card>
+                        <h2 slot="title">👥 Community Spotlight</h2>
+                        <p>Meet our community members who have contributed to open source and built amazing projects.</p>
+                        <span slot="footer">⭐ Meet the Team →</span>
+                    </custom-card>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== CORE TEAM CARDS ===== -->
+        <section id="team" aria-labelledby="team-heading">
+            <h2 id="team-heading">Community Leadership</h2>
+            
+            <div class="team-grid">
+                <div class="profile-card">
+                    <img src="https://via.placeholder.com/150" alt="Sarah Johnson - Lead Developer" width="150" height="150">
+                    <h3>Sarah Johnson</h3>
+                    <p>Lead Developer</p>
+                    <a href="#" class="profile-link" aria-label="View Sarah Johnson's profile">View Profile →</a>
+                </div>
+
+                <div class="profile-card">
+                    <img src="https://via.placeholder.com/150" alt="Michael Chen - DevOps Engineer" width="150" height="150">
+                    <h3>Michael Chen</h3>
+                    <p>DevOps Engineer</p>
+                    <a href="#" class="profile-link" aria-label="View Michael Chen's profile">View Profile →</a>
+                </div>
+
+                <div class="profile-card">
+                    <img src="https://via.placeholder.com/150" alt="Priya Patel - UX Researcher" width="150" height="150">
+                    <h3>Priya Patel</h3>
+                    <p>UX Researcher</p>
+                    <a href="#" class="profile-link" aria-label="View Priya Patel's profile">View Profile →</a>
+                </div>
+
+                <div class="profile-card">
+                    <img src="https://via.placeholder.com/150" alt="David Kim - Community Manager" width="150" height="150">
+                    <h3>David Kim</h3>
+                    <p>Community Manager</p>
+                    <a href="#" class="profile-link" aria-label="View David Kim's profile">View Profile →</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== JOIN FORM ===== -->
+        <section id="join" class="join-community" aria-labelledby="join-heading">
+            <h2 id="join-heading">Join The Engineering Community</h2>
+            <p><strong>"Standard, not a trend. Build with us."</strong></p>
+
+            <div id="draft-indicator" class="draft-indicator">💾 Draft saved</div>
+
+            <form class="membership-form" id="membershipForm" action="#" method="POST">
+                
+                <div class="form-group">
+                    <label for="fullName">Full Name <span class="required" aria-label="required">*</span></label>
+                    <input type="text" id="fullName" name="fullName" placeholder="Jane Doe" required>
+                    <div class="error-message" id="nameError"></div>
+                </div>
+
+                <div class="form-group">
+                    <label for="emailAddress">Student Email <span class="required" aria-label="required">*</span></label>
+                    <input type="email" id="emailAddress" name="emailAddress" placeholder="jane@student.edu" required>
+                    <div class="error-message" id="emailError"></div>
+                </div>
+
+                <div class="form-group">
+                    <label for="motivation">Why do you want to join?</label>
+                    <textarea id="motivation" name="motivation" rows="4" placeholder="I want to solve actual problems..."></textarea>
+                </div>
+
+                <button type="submit" class="btn-submit">Submit Application</button>
+                
+                <p class="form-note">* All fields are required</p>
+            </form>
+        </section>
+
+    </main>
+
+    <!-- ===== FOOTER ===== -->
+    <footer role="contentinfo">
+        <p>&copy; 2026 TechNova Community. All rights reserved.</p>
+        <p>Built with ❤️ by the TechNova Core Team</p>
+    </footer>
+
+</body>
+</html>
