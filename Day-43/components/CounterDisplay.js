@@ -16,7 +16,6 @@ class CounterDisplay extends HTMLElement {
         
         // Subscribe to store changes
         this.unsubscribe = globalStore.subscribe((state) => {
-            console.log('📢 CounterDisplay received state update:', state);
             this.updateDisplay(state);
         });
         
@@ -24,6 +23,7 @@ class CounterDisplay extends HTMLElement {
     }
 
     disconnectedCallback() {
+        // Clean up subscription to prevent memory leaks
         if (this.unsubscribe) {
             this.unsubscribe();
             console.log('🗑️ CounterDisplay unsubscribed');
@@ -32,16 +32,17 @@ class CounterDisplay extends HTMLElement {
 
     updateDisplay(state) {
         const count = state.cartCount || 0;
+        const display = this.shadowRoot.querySelector('.count-display');
         const countSpan = this.shadowRoot.querySelector('.count');
         const messageSpan = this.shadowRoot.querySelector('.message');
         
-        console.log(`📊 Updating display to: ${count}`);
+        if (display) {
+            display.classList.add('animate');
+            setTimeout(() => display.classList.remove('animate'), 300);
+        }
         
         if (countSpan) {
             countSpan.textContent = count;
-            countSpan.classList.remove('animate');
-            void countSpan.offsetWidth;
-            countSpan.classList.add('animate');
         }
         
         if (messageSpan) {
@@ -62,14 +63,13 @@ class CounterDisplay extends HTMLElement {
         this.shadowRoot.innerHTML = `
             <style>
                 .counter-card {
-                    background: #ffffff;
-                    border: 2px solid #e0e0e0;
+                    background: var(--card-bg, #ffffff);
+                    border: 2px solid var(--border-color, #e0e0e0);
                     border-radius: 12px;
                     padding: 24px 32px;
                     text-align: center;
                     min-width: 200px;
                     transition: all 0.3s ease;
-                    margin: 0 auto;
                 }
                 .counter-card:hover {
                     transform: translateY(-2px);
@@ -78,8 +78,9 @@ class CounterDisplay extends HTMLElement {
                 .count {
                     font-size: 3rem;
                     font-weight: 700;
-                    color: #2d1b69;
+                    color: var(--primary-color, #2d1b69);
                     display: block;
+                    transition: transform 0.3s ease;
                 }
                 .count.animate {
                     animation: pop 0.3s ease;
@@ -91,14 +92,22 @@ class CounterDisplay extends HTMLElement {
                 }
                 .label {
                     font-size: 0.85rem;
-                    color: #6b7280;
+                    color: var(--text-muted, #666);
                     text-transform: uppercase;
                     letter-spacing: 1px;
                 }
                 .message {
                     font-size: 1rem;
-                    color: #1a1a2e;
+                    color: var(--text-color, #333);
                     margin-top: 8px;
+                }
+                .count-display.animate {
+                    animation: pulse 0.3s ease;
+                }
+                @keyframes pulse {
+                    0% { transform: scale(1); }
+                    50% { transform: scale(1.05); }
+                    100% { transform: scale(1); }
                 }
                 .dark-theme .counter-card {
                     background: #1e1e2a;
@@ -114,7 +123,7 @@ class CounterDisplay extends HTMLElement {
 
             <div class="counter-card">
                 <span class="label">Cart Total</span>
-                <span class="count">${count}</span>
+                <span class="count display-${count}">${count}</span>
                 <div class="message">${count === 0 ? '🛒 Your cart is empty' : count === 1 ? '🛒 1 item in your cart' : `🛒 ${count} items in your cart`}</div>
             </div>
         `;
