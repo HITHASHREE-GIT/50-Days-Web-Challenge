@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TechNova | Day 50 - Final Capstone</title>
+    
+    <link rel="stylesheet" href="style.css">
+    
+    <!-- ===== SERVICE WORKER REGISTRATION (FIXED) ===== -->
+    <script>
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('sw.js')
+                    .then(reg => console.log('✅ Service Worker registered:', reg.scope))
+                    .catch(err => console.error('❌ SW registration failed:', err));
+            });
+        }
+    </script>
+    
+    <script type="module" src="main.js"></script>
+</head>
+<body>
+    <a href="#app-root" class="skip-link">Skip to content</a>
+
+    <div id="app">
+        <header class="app-header">
+            <nav class="app-nav">
+                <div class="nav-brand">
+                    <span class="logo">🚀</span>
+                    <span class="brand-name">TechNova</span>
+                </div>
+                
+                <div class="nav-status">
+                    <span id="onlineStatus" class="status-dot online" title="Online">●</span>
+                </div>
+                
+                <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">🌙</button>
+                
+                <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu">
+                    <span></span><span></span><span></span>
+                </button>
+                
+                <ul class="nav-links" id="navLinks">
+                    <li><a href="#home" class="nav-link active" data-route="home">Home</a></li>
+                    <li><a href="#search" class="nav-link" data-route="search">Search</a></li>
+                    <li><a href="#dashboard" class="nav-link" data-route="dashboard">Dashboard</a></li>
+                    <li><a href="#about" class="nav-link" data-route="about">About</a></li>
+                </ul>
+            </nav>
+        </header>
+
+        <main id="app-root" role="main">
+            <!-- Views injected by router -->
+        </main>
+
+        <footer class="app-footer">
+            <p>&copy; 2026 TechNova Platform. Built with Vanilla JS.</p>
+            <p>🏆 50 Days Complete! 🎉</p>
+            <p>Standard, not a trend. The logic, not a language.</p>
+        </footer>
+    </div>
+</body>
+</html>
