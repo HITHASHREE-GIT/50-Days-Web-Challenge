@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TechNova Platform | Capstone</title>
+    
+    <!-- CSS -->
+    <link rel="stylesheet" href="style.css">
+    
+    <!-- ===== ES6 MODULES ===== -->
+    <script type="module" src="main.js"></script>
+</head>
+<body>
+    <!-- ===== SKIP LINK ===== -->
+    <a href="#app-root" class="skip-link">Skip to content</a>
+
+    <!-- ===== APP SHELL ===== -->
+    <div id="app">
+        <!-- Navigation -->
+        <header class="app-header">
+            <nav class="app-nav">
+                <div class="nav-brand">
+                    <span class="logo">🚀</span>
+                    <span class="brand-name">TechNova</span>
+                </div>
+                
+                <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">🌙</button>
+                
+                <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu">
+                    <span></span><span></span><span></span>
+                </button>
+                
+                <ul class="nav-links" id="navLinks">
+                    <li><a href="/" class="nav-link active" data-route="home">Home</a></li>
+                    <li><a href="/about" class="nav-link" data-route="about">About</a></li>
+                    <li><a href="/dashboard" class="nav-link" data-route="dashboard">Dashboard</a></li>
+                    <li><a href="/team" class="nav-link" data-route="team">Team</a></li>
+                </ul>
+            </nav>
+        </header>
+
+        <!-- ===== MAIN CONTENT ===== -->
+        <main id="app-root" role="main">
+            <!-- Views injected by router -->
+        </main>
+
+        <!-- ===== FOOTER ===== -->
+        <footer class="app-footer">
+            <p>&copy; 2026 TechNova Platform. Built with Vanilla JS.</p>
+            <p>Standard, not a trend. The logic, not a language.</p>
+        </footer>
+    </div>
+
+    <!-- ===== TEMPLATES ===== -->
+    <template id="loading-template">
+        <div class="loading-state">
+            <div class="spinner"></div>
+            <p>Loading...</p>
+        </div>
+    </template>
+</body>
+</html>
