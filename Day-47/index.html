@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TechNova | Day 47 - Component Library</title>
+    
+    <!-- CSS -->
+    <link rel="stylesheet" href="style.css">
+    
+    <!-- ===== ES6 MODULES ===== -->
+    <script type="module" src="main.js"></script>
+</head>
+<body>
+    <!-- ===== SKIP LINK ===== -->
+    <a href="#app-root" class="skip-link">Skip to content</a>
+
+    <!-- ===== APP SHELL ===== -->
+    <div id="app">
+        <header class="app-header">
+            <nav class="app-nav">
+                <div class="nav-brand">
+                    <span class="logo">🚀</span>
+                    <span class="brand-name">TechNova</span>
+                </div>
+                
+                <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">🌙</button>
+                
+                <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu">
+                    <span></span><span></span><span></span>
+                </button>
+                
+                <ul class="nav-links" id="navLinks">
+                    <li><a href="/" class="nav-link active" data-route="home">Home</a></li>
+                    <li><a href="/components" class="nav-link" data-route="components">Components</a></li>
+                    <li><a href="/team" class="nav-link" data-route="team">Team</a></li>
+                </ul>
+            </nav>
+        </header>
+
+        <!-- ===== MAIN CONTENT ===== -->
+        <main id="app-root" role="main">
+            <!-- Views injected by router -->
+        </main>
+
+        <!-- ===== FOOTER ===== -->
+        <footer class="app-footer">
+            <p>&copy; 2026 TechNova Platform. Built with Vanilla JS.</p>
+            <p>Standard, not a trend. The logic, not a language.</p>
+        </footer>
+    </div>
+
+    <!-- ===== TEMPLATES ===== -->
+    
+    <!-- User Card Template -->
+    <template id="user-card-template">
+        <style>
+            .user-card {
+                background: var(--bg-card, #ffffff);
+                border: 2px solid var(--border-color, #e0e0e0);
+                border-radius: 12px;
+                padding: 24px;
+                text-align: center;
+                box-shadow: var(--shadow-sm, 0 4px 6px rgba(0,0,0,0.05));
+                transition: transform 0.3s ease, box-shadow 0.3s ease;
+                max-width: 260px;
+                margin: 0 auto;
+            }
+            .user-card:hover {
+                transform: translateY(-5px);
+                box-shadow: var(--shadow-md, 0 12px 24px rgba(0,0,0,0.12));
+            }
+            .user-avatar {
+                width: 80px;
+                height: 80px;
+                border-radius: 50%;
+                background: linear-gradient(135deg, var(--primary-accent, #c084fc), var(--primary-color, #2d1b69));
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                margin: 0 auto 15px;
+                font-size: 2.5rem;
+                font-weight: 700;
+                color: white;
+                border: 3px solid var(--primary-accent, #c084fc);
+            }
+            .user-name {
+                font-size: 1.2rem;
+                font-weight: 700;
+                color: var(--text-color, #1a1a2e);
+                margin-bottom: 4px;
+            }
+            .user-role {
+                font-size: 0.85rem;
+                color: var(--text-muted, #6b7280);
+                text-transform: uppercase;
+                letter-spacing: 0.5px;
+                font-weight: 600;
+            }
+            .user-badge {
+                display: inline-block;
+                background: var(--primary-accent, #c084fc);
+                color: var(--primary-color, #2d1b69);
+                padding: 4px 14px;
+                border-radius: 12px;
+                font-size: 0.7rem;
+                font-weight: 700;
+                text-transform: uppercase;
+                letter-spacing: 0.5px;
+                margin-top: 8px;
+            }
+            .dark-theme .user-card {
+                background: #1e1e2a;
+                border-color: #3a3a4a;
+            }
+            .dark-theme .user-name {
+                color: #e8e8e8;
+            }
+            .dark-theme .user-role {
+                color: #b0b0b8;
+            }
+            .dark-theme .user-badge {
+                background: #4a2d8a;
+                color: #c084fc;
+            }
+        </style>
+        <div class="user-card">
+            <div class="user-avatar" id="avatar">U</div>
+            <div class="user-name" id="name">Unknown User</div>
+            <div class="user-role" id="role">Member</div>
+            <span class="user-badge" id="badge">Member</span>
+        </div>
+    </template>
+
+    <!-- Data Feed Template -->
+    <template id="data-feed-template">
+        <style>
+            .data-feed {
+                background: var(--bg-card, #ffffff);
+                border: 2px solid var(--border-color, #e0e0e0);
+                border-radius: 12px;
+                padding: 20px;
+                box-shadow: var(--shadow-sm, 0 4px 6px rgba(0,0,0,0.05));
+                margin-bottom: 1rem;
+            }
+            .data-feed-header {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                border-bottom: 2px solid var(--border-color, #e5e7eb);
+                padding-bottom: 12px;
+                margin-bottom: 12px;
+            }
+            .data-feed-title {
+                font-size: 1.1rem;
+                font-weight: 700;
+                color: var(--text-color, #1a1a2e);
+            }
+            .data-feed-count {
+                font-size: 0.85rem;
+                color: var(--text-muted, #6b7280);
+                background: var(--bg-color, #f3f4f6);
+                padding: 2px 12px;
+                border-radius: 12px;
+            }
+            .data-feed-body {
+                color: var(--text-color, #1a1a2e);
+            }
+            .data-feed-body ::slotted(*) {
+                margin-bottom: 0.5rem;
+            }
+            .dark-theme .data-feed {
+                background: #1e1e2a;
+                border-color: #3a3a4a;
+            }
+            .dark-theme .data-feed-title {
+                color: #e8e8e8;
+            }
+            .dark-theme .data-feed-count {
+                background: #2a2a3a;
+            }
+        </style>
+        <div class="data-feed">
+            <div class="data-feed-header">
+                <span class="data-feed-title"><slot name="title">📊 Data Feed</slot></span>
+                <span class="data-feed-count" id="count">0 items</span>
+            </div>
+            <div class="data-feed-body">
+                <slot>No data available</slot>
+            </div>
+        </div>
+    </template>
+
+    <!-- Modal Template -->
+    <template id="modal-template">
+        <style>
+            .modal-overlay {
+                position: fixed;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                background: rgba(0, 0, 0, 0.5);
+                display: none;
+                align-items: center;
+                justify-content: center;
+                z-index: 1000;
+                animation: fadeIn 0.3s ease;
+            }
+            .modal-overlay.open { display: flex; }
+            .modal-content {
+                background: var(--bg-card, #ffffff);
+                border-radius: 12px;
+                max-width: 500px;
+                width: 90%;
+                max-height: 80vh;
+                overflow-y: auto;
+                box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+                animation: slideUp 0.3s ease;
+            }
+            .modal-header {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                padding: 1.2rem 1.5rem;
+                border-bottom: 2px solid var(--border-color, #e5e7eb);
+            }
+            .modal-header ::slotted([slot="title"]) {
+                margin: 0;
+                font-size: 1.3rem;
+                font-weight: 700;
+                color: var(--text-color, #1a1a2e);
+            }
+            .modal-close-btn {
+                background: none;
+                border: none;
+                font-size: 1.8rem;
+                cursor: pointer;
+                color: var(--text-muted, #6b7280);
+                transition: all 0.3s ease;
+                padding: 0 0.5rem;
+                line-height: 1;
+            }
+            .modal-close-btn:hover {
+                color: var(--error-color, #ef4444);
+                transform: rotate(90deg);
+            }
+            .modal-body {
+                padding: 1.5rem;
+                color: var(--text-color, #1a1a2e);
+            }
+            .modal-body ::slotted(*) {
+                margin-bottom: 0.5rem;
+            }
+            .modal-footer {
+                padding: 1rem 1.5rem;
+                border-top: 1px solid var(--border-color, #e5e7eb);
+                display: flex;
+                justify-content: flex-end;
+                gap: 0.5rem;
+            }
+            @keyframes fadeIn {
+                from { opacity: 0; }
+                to { opacity: 1; }
+            }
+            @keyframes slideUp {
+                from { transform: translateY(20px); opacity: 0; }
+                to { transform: translateY(0); opacity: 1; }
+            }
+            .dark-theme .modal-content {
+                background: #1e1e2a;
+            }
+            .dark-theme .modal-header {
+                border-color: #3a3a4a;
+            }
+            .dark-theme .modal-footer {
+                border-color: #3a3a4a;
+            }
+        </style>
+        <div class="modal-overlay" id="modalOverlay">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <slot name="title">Modal Title</slot>
+                    <button class="modal-close-btn" id="modalCloseBtn">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <slot>Modal body content</slot>
+                </div>
+                <div class="modal-footer">
+                    <slot name="footer">
+                        <button id="modalDefaultBtn" style="padding:8px 20px; background:var(--primary-color); color:white; border:none; border-radius:8px; cursor:pointer;">Close</button>
+                    </slot>
+                </div>
+            </div>
+        </div>
+    </template>
+</body>
+</html>
