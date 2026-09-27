@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TechNova | Day 48 - State & Memory</title>
+    
+    <link rel="stylesheet" href="style.css">
+    
+    <script type="module" src="main.js"></script>
+</head>
+<body>
+    <a href="#app-root" class="skip-link">Skip to content</a>
+
+    <div id="app">
+        <header class="app-header">
+            <nav class="app-nav">
+                <div class="nav-brand">
+                    <span class="logo">🚀</span>
+                    <span class="brand-name">TechNova</span>
+                </div>
+                
+                <cart-counter></cart-counter>
+                
+                <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">🌙</button>
+                
+                <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu">
+                    <span></span><span></span><span></span>
+                </button>
+                
+                <ul class="nav-links" id="navLinks">
+                    <li><a href="/" class="nav-link active" data-route="home">Home</a></li>
+                    <li><a href="/demo" class="nav-link" data-route="demo">Demo</a></li>
+                    <li><a href="/offline" class="nav-link" data-route="offline">Offline</a></li>
+                </ul>
+            </nav>
+        </header>
+
+        <main id="app-root" role="main">
+            <!-- Views injected by router -->
+        </main>
+
+        <footer class="app-footer">
+            <p>&copy; 2026 TechNova Platform. Built with Vanilla JS.</p>
+            <p>Standard, not a trend. The logic, not a language.</p>
+        </footer>
+    </div>
+</body>
+</html>
